@@ -7,12 +7,12 @@ os.environ["HF_ENABLE_PARALLEL_LOADING"] = "YES"
 
 if __name__ == "__main__":
     transformer = RegionalQwenImageTransformer2DModel.from_pretrained(
-        "Qwen/Qwen-Image", 
+        "Qwen/Qwen-Image-2512", 
         subfolder="transformer", 
         torch_dtype=torch.bfloat16
     ).to("cuda")
     pipeline = RegionalQwenImagePipeline.from_pretrained(
-        "Qwen/Qwen-Image", 
+        "Qwen/Qwen-Image-2512", 
         transformer=transformer, 
         torch_dtype=torch.bfloat16
     ).to("cuda")
@@ -31,23 +31,23 @@ if __name__ == "__main__":
     image_width = 1280
     image_height = 768
     num_samples = 1
-    num_inference_steps = 35
+    num_inference_steps = 40
     guidance_scale = 3.5
     seed = 124
-    base_prompt = "romantic, vibe, lawn, light, broad, high quality, 8k, realistic"
-    background_prompt = "romantic, vibe, lawn, light, broad, high quality, 8k, realistic"
+    base_prompt = "In a modern kitchen, A man in a white apron and jeans, chopping vegetables, looking at camera and a woman in a red dress, holding a tray of cookies, smiling at camera, high quality, 8k, realistic"
+    background_prompt = "a photo"
     regional_prompt_mask_pairs = {
         "0": {
-            "description": "tree, summer, green leaves, high quality, 8k, realistic",
+            "description": "A man in a white apron and jeans, chopping vegetables, looking at camera.",
             "mask": [0, 0, image_width//2, image_height]
         },
         "1": {
-            "description": "tree, winter, snow, high quality, 8k, realistic",
+            "description": "A woman in a red dress, holding a tray of cookies, smiling at camera.",
             "mask": [image_width//2, 0, image_width, image_height]
         }
     }
     # region control settings
-    mask_inject_steps = 15
+    mask_inject_steps = 10
     inject_blocks_interval = 1
     base_ratio = 0.3
 

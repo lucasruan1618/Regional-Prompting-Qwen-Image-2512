@@ -5,17 +5,17 @@ import os
 os.environ["HF_ENABLE_PARALLEL_LOADING"] = "YES"
 
 if __name__ == "__main__":
-    pipeline = QwenImagePipeline.from_pretrained("Qwen/Qwen-Image", torch_dtype=torch.bfloat16).to("cuda")
+    pipeline = QwenImagePipeline.from_pretrained("Qwen/Qwen-Image-2512", torch_dtype=torch.bfloat16).to("cuda")
 
-    image_width = 1664
-    image_height = 928
-    num_inference_steps = 35
+    image_width = 1280
+    image_height = 1768
+    num_inference_steps = 40
     guidance_scale = 3.5
     seed = 124
-    base_prompt = "An ancient woman stands solemnly holding a blazing torch, while a fierce battle rages in the background, capturing both strength and tragedy in a historical war scene."
+    base_prompt = "A photo in a modern kitchen: on the left side, a man in a white apron and jeans is chopping vegetables while looking at the camera; on the right side, a woman in a red dress is holding a tray of cookies and smiling at the camera. High quality, 8k, realistic."
     negative_prompt = " "
     import time
-    for i in range (3):
+    for i in range (1):
         srt = time.time()
         images = pipeline(
             prompt=base_prompt,
