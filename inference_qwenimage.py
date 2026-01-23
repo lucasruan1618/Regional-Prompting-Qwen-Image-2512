@@ -12,7 +12,7 @@ if __name__ == "__main__":
     num_inference_steps = 40
     guidance_scale = 3.5
     seed = 124
-    base_prompt = "A photo in a modern kitchen: on the left side, a man in a white apron and jeans is chopping vegetables while looking at the camera; on the right side, a woman in a red dress is holding a tray of cookies and smiling at the camera. High quality, 8k, realistic."
+    base_prompt = "Landscape, summer tree and winter tree"
     negative_prompt = " "
     import time
     for i in range (1):

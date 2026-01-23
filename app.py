@@ -113,29 +113,29 @@ with gr.Blocks() as demo:
     with gr.Row():
         with gr.Column():
             base_prompt = gr.Textbox(label="Global Base Prompt", value="A modern kitchen, high quality, 8k")
-            neg_prompt = gr.Textbox(label="Negative Prompt", value="")
+            neg_prompt = gr.Textbox(label="Negative Prompt", value="", visible=False)
             
             with gr.Row():
-                steps = gr.Slider(1, 100, 40, step=1, label="Inference Steps")
+                steps = gr.Slider(1, 100, 35, step=1, label="Inference Steps")
                 base_ratio = gr.Slider(0.0, 1.0, 0.3, label="Base Ratio (Control Strength)")
             
             with gr.Row():
                 guidance = gr.Slider(1.0, 15.0, 3.5, label="Guidance Scale")
-                mask_steps = gr.Slider(0, 50, 10, step=1, label="Mask Inject Steps")
+                mask_steps = gr.Slider(0, 50, 1, step=1, label="Mask Inject Steps")
 
             with gr.Row():
                 width = gr.Number(label="Width", value=1280)
                 height = gr.Number(label="Height", value=768)
                 seed = gr.Number(label="Seed", value=42)
 
-            bg_prompt = gr.Textbox(label="Background Prompt", value="A photo")
+            bg_prompt = gr.Textbox(label="Background Prompt", value="A photo", visible=False)
             run_btn = gr.Button("Generate", variant="primary")
 
         with gr.Column():
             with gr.Group():
                 gr.Markdown("### Region 1 (Left Half)")
                 r1_en = gr.Checkbox(label="Enable Region 1", value=True)
-                r1_p = gr.Textbox(label="Region 1 Prompt", value="In a modern kitchen, A man in a white apron and jeans, chopping vegetables, looking at camera and a woman in a red dress, holding a tray of cookies, smiling at camera, high quality, 8k, realistic")
+                r1_p = gr.Textbox(label="Region 1 Prompt", value="A man in a white apron and jeans, chopping vegetables, looking at camera and a woman in a red dress, holding a tray of cookies, smiling at camera, high quality, 8k, realistic")
                 r1_c = gr.Textbox(label="Coords (x1,y1,x2,y2)", value="0,0,640,768")
 
             with gr.Group():
